@@ -56,7 +56,6 @@ jobs:
           cd demo_dabs
           databricks bundle validate -t ${{ needs.determine-environment.outputs.environment }}
         env:
-          DATABRICKS_HOST: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_DEMO }}
 
   deploy:
@@ -65,7 +64,6 @@ jobs:
     if: needs.determine-environment.outputs.should-deploy == 'true'
     env:
       ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
-      DATABRICKS_HOST: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_DEMO }}
     steps:
       - name: Checkout code
