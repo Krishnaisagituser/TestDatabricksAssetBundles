@@ -51,7 +51,10 @@ jobs:
         uses: databricks/setup-cli@main
 
       - name: Validate bundle
-        run: databricks bundle validate -t ${{ needs.determine-environment.outputs.environment }}
+        
+        run: |
+          cd demo_dabs
+          databricks bundle validate -t ${{ needs.determine-environment.outputs.environment }}
         env:
           DATABRICKS_HOST: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_DEMO }}
@@ -72,7 +75,9 @@ jobs:
         uses: databricks/setup-cli@main
 
       - name: Deploy Bundle
-        run: databricks bundle deploy -t $ENVIRONMENT
+        run: |
+          cd demo_dabs
+          databricks bundle deploy -t $ENVIRONMENT
 
       - name: Deployment summary
         run: |
