@@ -11,12 +11,12 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://dbc-f07dc9ba-716c.cloud.databricks.com/
+      host: ${DATABRICKS_WORKSPACE_URL_DEMO}
 
   prod:
     mode: production
     workspace:
-      host: https://dbc-f07dc9ba-716c.cloud.databricks.com/
+      host: ${DATABRICKS_WORKSPACE_URL_DEMO}
       root_path: /Workspace/Shared/bundle/${bundle.name}/${bundle.target}
     permissions:
       - user_name: krishnakumarpkk2002@gmail.com
