@@ -57,7 +57,7 @@ jobs:
           databricks bundle validate -t ${{ needs.determine-environment.outputs.environment }}
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_DEMO }}
-          DATABRICKS_WORKSPACE_URL_DEMO: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
+          DATABRICKS_HOST: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
     env:
       ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_DEMO }}
-      DATABRICKS_WORKSPACE_URL_DEMO: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
+      DATABRICKS_HOST: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -83,7 +83,7 @@ jobs:
         run: |
           echo "Deployment completed successfully!"
           echo "Environment: $ENVIRONMENT"
-          echo "Workspace: $DATABRICKS_WORKSPACE_URL_DEMO"
+          echo "Workspace: $DATABRICKS_HOST"
           echo "Branch: ${{ github.ref }}"
           echo "Triggered by: ${{ github.event_name }}"
 
