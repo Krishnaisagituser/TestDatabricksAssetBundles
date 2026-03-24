@@ -57,6 +57,7 @@ jobs:
           databricks bundle validate -t ${{ needs.determine-environment.outputs.environment }}
         env:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_DEMO }}
+          DATABRICKS_HOST: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -65,6 +66,7 @@ jobs:
     env:
       ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_DEMO }}
+      DATABRICKS_HOST: ${{ vars.DATABRICKS_WORKSPACE_URL_DEMO }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
